@@ -5,11 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tanzania Apps Solutions - Digital Solutions Provider</title>
-    <link rel="icon" type="image/png" href="Public/favicon.PNG" />
+
+    <!-- Favicon: place /favicon.png at project root (or public/) -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
     <meta
       name="description"
       content="Tanzanian startup creating mobile apps, web apps, and digital solutions that empower businesses, communities, and organizations"
     />
+
+    <!-- Fonts & icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,6 +25,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+
+    <!-- Tailwind (CDN - ok for a static site) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -52,35 +59,47 @@
         },
       };
     </script>
+
     <style>
+      /* small extra styles for scroll animation */
       .animate-on-scroll {
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.8s ease, transform 0.8s ease;
+        will-change: transform, opacity;
       }
       .animate-on-scroll.visible {
         opacity: 1;
         transform: translateY(0);
       }
+      /* mobile menu overlay */
+      .mobile-menu {
+        transition: transform 0.25s ease;
+      }
     </style>
   </head>
-  <body class="font-body text-gray-800 bg-white">
-    <!-- Navigation -->
+
+  <body class="font-body text-gray-800 bg-white antialiased">
+    <!-- NAV -->
     <nav
       id="navbar"
-      class="fixed w-full h-24 bg-white shadow-md z-50 transition-all duration-300"
+      class="fixed w-full top-0 left-0 h-20 bg-white/95 backdrop-blur-sm z-50 border-b border-transparent transition-all duration-300"
+      role="navigation"
+      aria-label="Main Navigation"
     >
       <div class="container mx-auto px-4 h-full">
-        <div class="flex justify-between items-center h-full">
-          <a href="#home" class="flex items-center h-full">
+        <div class="flex items-center justify-between h-full">
+          <a href="#home" class="flex items-center h-full" aria-label="Home">
+            <!-- navbar logo (use exact filename /tas-logo.png) -->
             <img
-              src="Logo.png"
+              src="/tas-logo.png"
               alt="Tanzania Apps Solutions Logo"
-              class="h-20 md:h-24 object-contain"
+              class="h-14 md:h-20 object-contain"
             />
           </a>
 
-          <div class="hidden md:flex space-x-8">
+          <!-- Desktop links -->
+          <div class="hidden md:flex items-center space-x-8">
             <a
               href="#home"
               class="text-gray-700 hover:text-primary transition-colors duration-300"
@@ -108,407 +127,467 @@
             >
           </div>
 
-          <button class="md:hidden text-gray-700">
-            <i class="fas fa-bars text-xl"></i>
+          <!-- Mobile hamburger -->
+          <button
+            id="mobileMenuButton"
+            class="md:hidden p-2 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            aria-label="Toggle menu"
+          >
+            <i class="fas fa-bars text-2xl"></i>
           </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu (hidden on md+) -->
+      <div
+        id="mobileMenu"
+        class="md:hidden fixed inset-x-0 top-20 bg-white z-40 shadow-md mobile-menu transform -translate-y-2 scale-95 opacity-0 pointer-events-none"
+        aria-hidden="true"
+      >
+        <div class="px-6 py-6">
+          <div class="flex flex-col space-y-4">
+            <a href="#home" class="text-gray-800 text-lg" data-close>Home</a>
+            <a href="#about" class="text-gray-800 text-lg" data-close>About</a>
+            <a href="#services" class="text-gray-800 text-lg" data-close
+              >Services</a
+            >
+            <a href="#portfolio" class="text-gray-800 text-lg" data-close
+              >Portfolio</a
+            >
+            <a href="#contact" class="text-gray-800 text-lg" data-close
+              >Contact</a
+            >
+          </div>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section
-      id="home"
-      class="min-h-screen flex items-center pt-20 pb-16 bg-ivory"
-    >
-      <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
-            <h1
-              class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary mb-6"
-            >
-              Building Software,<br />Creating Solutions
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-              Tanzania Apps Solutions is a young startup that helps businesses,
-              communities, and organizations grow with smart digital solutions.
-              We turn ideas into useful and powerful digital tools.
-            </p>
-            <a
-              href="#contact"
-              class="inline-block bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300 transform hover:scale-105"
-            >
-              Work With Us
-            </a>
-          </div>
-          <div class="animate-on-scroll">
-            <img
-              src="openimage.jpg"
-              alt="Tanzania Apps Solutions team collaboration"
-              class="rounded-xl shadow-xl w-full"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2
-            class="text-3xl md:text-4xl font-heading font-bold text-primary mb-4"
-          >
-            About Us
-          </h2>
-          <div class="w-20 h-1 bg-secondary mx-auto mb-8"></div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
-            <img
-              src="Public/arewe.jpg"
-              alt="TAS team working together"
-              class="rounded-xl shadow-lg w-full"
-              loading="lazy"
-            />
-          </div>
-          <div class="animate-on-scroll">
-            <h3 class="text-2xl font-heading font-semibold text-primary mb-6">
-              Who We Are
-            </h3>
-            <p class="text-gray-600 mb-6 leading-relaxed">
-              Tanzania Apps Solutions is a team of developers, designers, and
-              digital thinkers working to bring digital change across Tanzania.
-              We believe technology can make a real positive impact.
-            </p>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                  <i class="fas fa-bullseye text-primary text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-heading font-semibold text-lg mb-2">
-                    Our Mission
-                  </h4>
-                  <p class="text-gray-600">
-                    Driving digital transformation in Tanzania through
-                    innovative and accessible technology solutions.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                  <i class="fas fa-eye text-primary text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-heading font-semibold text-lg mb-2">
-                    Our Vision
-                  </h4>
-                  <p class="text-gray-600">
-                    To be Tanzania's leading digital solutions provider,
-                    empowering businesses and communities through technology.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-ivory">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2
-            class="text-3xl md:text-4xl font-heading font-bold text-primary mb-4"
-          >
-            Our Services
-          </h2>
-          <div class="w-20 h-1 bg-secondary mx-auto mb-8"></div>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            We offer comprehensive digital solutions tailored to meet your
-            business needs and drive growth.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
-          >
-            <div
-              class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6"
-            >
-              <span class="text-2xl">📱</span>
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-4">
-              Mobile App Development
-            </h3>
-            <p class="text-gray-600">
-              Custom iOS and Android applications designed to engage users and
-              solve real-world problems.
-            </p>
-          </div>
-          <div
-            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
-          >
-            <div
-              class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6"
-            >
-              <span class="text-2xl">💻</span>
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-4">
-              Web Applications
-            </h3>
-            <p class="text-gray-600">
-              Responsive and scalable web solutions that deliver exceptional
-              user experiences across all devices.
-            </p>
-          </div>
-          <div
-            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
-          >
-            <div
-              class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6"
-            >
-              <span class="text-2xl">🌍</span>
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-4">
-              Digital Transformation
-            </h3>
-            <p class="text-gray-600">
-              Comprehensive strategies to modernize your business processes and
-              embrace digital innovation.
-            </p>
-          </div>
-          <div
-            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
-          >
-            <div
-              class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6"
-            >
-              <span class="text-2xl">🤝</span>
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-4">
-              Tech Consulting
-            </h3>
-            <p class="text-gray-600">
-              Expert guidance and support to help you make informed technology
-              decisions for your business.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2
-            class="text-3xl md:text-4xl font-heading font-bold text-primary mb-4"
-          >
-            Our Portfolio
-          </h2>
-          <div class="w-20 h-1 bg-secondary mx-auto mb-8"></div>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover some of our recent projects that demonstrate our expertise
-            and commitment to excellence.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="group animate-on-scroll">
-            <div class="overflow-hidden rounded-xl mb-4">
-              <img
-                src="Public/tourconnect.png"
-                alt="E-commerce mobile app project"
-                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-2">
-              Tours Connect
-            </h3>
-            <p class="text-gray-600">
-              Tours Connect is a platform that makes it easy for travelers to
-              discover & book tours. Tour companies can manage tours in one
-              place.
-            </p>
-          </div>
-          <div class="group animate-on-scroll">
-            <div class="overflow-hidden rounded-xl mb-4">
-              <img
-                src="Public/map.png"
-                alt="Education web platform project"
-                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-2">
-              University Navigation Map
-            </h3>
-            <p class="text-gray-600">
-              The University Map App helps students and visitors easily find
-              buildings, offices, and facilities on campus.
-            </p>
-          </div>
-          <div class="group animate-on-scroll">
-            <div class="overflow-hidden rounded-xl mb-4">
-              <img
-                src="Public/Dashboard.png"
-                alt="Healthcare solution project"
-                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="text-xl font-heading font-semibold text-primary mb-2">
-              University System
-            </h3>
-            <p class="text-gray-600">
-              The University System is a platform that helps students connect in
-              course groups, get IT and class support, and access mental-health
-              resources in one place.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-ivory">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2
-            class="text-3xl md:text-4xl font-heading font-bold text-primary mb-4"
-          >
-            Get In Touch
-          </h2>
-          <div class="w-20 h-1 bg-secondary mx-auto mb-8"></div>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to start your digital transformation journey? Let's discuss
-            your project.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-12">
-          <div class="animate-on-scroll">
-            <form class="space-y-6">
-              <div>
-                <label for="name" class="block text-gray-700 mb-2"
-                  >Full Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label for="email" class="block text-gray-700 mb-2"
-                  >Email Address</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              <div>
-                <label for="message" class="block text-gray-700 mb-2"
-                  >Message</label
-                >
-                <textarea
-                  id="message"
-                  rows="5"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="Tell us about your project..."
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300"
+    <!-- HERO -->
+    <main class="pt-24">
+      <section id="home" class="min-h-screen flex items-center py-12 bg-ivory">
+        <div class="container mx-auto px-4">
+          <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div class="animate-on-scroll">
+              <h1
+                class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary leading-tight mb-4"
               >
-                Send Message
-              </button>
-            </form>
+                Building Software,<br />Creating Solutions
+              </h1>
+              <p
+                class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 leading-relaxed max-w-2xl"
+              >
+                Tanzania Apps Solutions is a young startup that helps
+                businesses, communities, and organizations grow with smart
+                digital solutions. We turn ideas into useful and powerful
+                digital tools.
+              </p>
+              <a
+                href="#contact"
+                class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition transform hover:scale-105"
+              >
+                Work With Us
+              </a>
+            </div>
+
+            <div class="animate-on-scroll">
+              <!-- hero image: /openimage.jpg -->
+              <img
+                src="/openimage.jpg"
+                alt="Tanzania Apps Solutions team collaboration"
+                class="rounded-xl shadow-xl w-full max-h-[420px] object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <div class="animate-on-scroll">
-            <div class="bg-white p-8 rounded-xl shadow-md">
-              <h3 class="text-2xl font-heading font-semibold text-primary mb-6">
-                Contact Information
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-10 animate-on-scroll">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary mb-3"
+            >
+              About Us
+            </h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="animate-on-scroll">
+              <img
+                src="/arewe.jpg"
+                alt="TAS team working together"
+                class="rounded-xl shadow-lg w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="animate-on-scroll">
+              <h3 class="text-xl font-heading font-semibold text-primary mb-4">
+                Who We Are
               </h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Tanzania Apps Solutions is a team of developers, designers, and
+                digital thinkers working to bring digital change across
+                Tanzania. We believe technology can make a real positive impact.
+              </p>
+
               <div class="space-y-4">
-                <div class="flex items-center">
+                <div class="flex items-start">
                   <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                    <i class="fas fa-envelope text-primary"></i>
+                    <i class="fas fa-bullseye text-primary text-xl"></i>
                   </div>
                   <div>
-                    <p class="text-gray-600">Email</p>
-                    <p class="font-semibold">tanzaniaappssolutions@gmail.com</p>
+                    <h4 class="font-heading font-semibold text-lg mb-2">
+                      Our Mission
+                    </h4>
+                    <p class="text-gray-600">
+                      Driving digital transformation in Tanzania through
+                      innovative and accessible technology solutions.
+                    </p>
                   </div>
                 </div>
-                <div class="flex items-center">
+
+                <div class="flex items-start">
                   <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                    <i class="fas fa-phone text-primary"></i>
+                    <i class="fas fa-eye text-primary text-xl"></i>
                   </div>
                   <div>
-                    <p class="text-gray-600">Phone</p>
-                    <p class="font-semibold">+255 626 178 632</p>
+                    <h4 class="font-heading font-semibold text-lg mb-2">
+                      Our Vision
+                    </h4>
+                    <p class="text-gray-600">
+                      To be Tanzania's leading digital solutions provider,
+                      empowering businesses and communities through technology.
+                    </p>
                   </div>
-                </div>
-                <div class="flex items-center">
-                  <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                    <i class="fas fa-map-marker-alt text-primary"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-600">Location</p>
-                    <p class="font-semibold">Arusha, Tanzania</p>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-8">
-                <h4
-                  class="text-lg font-heading font-semibold text-primary mb-4"
-                >
-                  Follow Us
-                </h4>
-                <div class="flex space-x-4">
-                  <a
-                    href="https://www.linkedin.com/in/ibrahim-shelukindo-a8a496225"
-                    target="_blank"
-                    class="bg-gray-100 p-3 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300"
-                  >
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                  <a
-                    href="mailto:tanzaniaappssolutions@gmail.com"
-                    target="_blank"
-                    class="bg-gray-100 p-3 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300"
-                  >
-                    <i class="fas fa-envelope"></i>
-                  </a>
-                  <a
-                    href="https://instagram.com/tanzania_apps_solution"
-                    target="_blank"
-                    class="bg-gray-100 p-3 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300"
-                  >
-                    <i class="fab fa-instagram"></i>
-                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-12">
+      <!-- SERVICES -->
+      <section id="services" class="py-16 bg-ivory">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-10 animate-on-scroll">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary mb-3"
+            >
+              Our Services
+            </h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+              We offer comprehensive digital solutions tailored to meet your
+              business needs and drive growth.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
+            >
+              <div
+                class="bg-primary bg-opacity-10 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">📱</span>
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-2">
+                Mobile App Development
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Custom iOS and Android applications designed to engage users and
+                solve real-world problems.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
+            >
+              <div
+                class="bg-primary bg-opacity-10 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">💻</span>
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-2">
+                Web Applications
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Responsive and scalable web solutions that deliver exceptional
+                user experiences across all devices.
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
+            >
+              <div
+                class="bg-primary bg-opacity-10 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🌍</span>
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-2">
+                Digital Transformation
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Comprehensive strategies to modernize your business processes
+                and embrace digital innovation.
+              </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll"
+            >
+              <div
+                class="bg-primary bg-opacity-10 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🤝</span>
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-2">
+                Tech Consulting
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Expert guidance and support to help you make informed technology
+                decisions for your business.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-10 animate-on-scroll">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary mb-3"
+            >
+              Our Portfolio
+            </h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+              Discover some of our recent projects that demonstrate our
+              expertise and commitment to excellence.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="group animate-on-scroll">
+              <div class="overflow-hidden rounded-xl mb-3">
+                <img
+                  src="/tourconnect.png"
+                  alt="Tours Connect project"
+                  class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-1">
+                Tours Connect
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Tours Connect is a platform that makes it easy for travelers to
+                discover & book tours.
+              </p>
+            </div>
+
+            <div class="group animate-on-scroll">
+              <div class="overflow-hidden rounded-xl mb-3">
+                <img
+                  src="/map.png"
+                  alt="University Navigation Map project"
+                  class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-1">
+                University Navigation Map
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Helps students and visitors easily find buildings and facilities
+                on campus.
+              </p>
+            </div>
+
+            <div class="group animate-on-scroll">
+              <div class="overflow-hidden rounded-xl mb-3">
+                <img
+                  src="/dashboard.png"
+                  alt="University System project"
+                  class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-lg font-heading font-semibold text-primary mb-1">
+                University System
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Platform helping students connect in course groups, get IT
+                support, and access mental-health resources.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="py-16 bg-ivory">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-8 animate-on-scroll">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary mb-3"
+            >
+              Get In Touch
+            </h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+              Ready to start your digital transformation journey? Let's discuss
+              your project.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="animate-on-scroll">
+              <form id="contactForm" class="space-y-4">
+                <div>
+                  <label for="name" class="block text-gray-700 mb-1"
+                    >Full Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label for="email" class="block text-gray-700 mb-1"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label for="message" class="block text-gray-700 mb-1"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="5"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Tell us about your project..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <div class="animate-on-scroll">
+              <div class="bg-white p-6 rounded-xl shadow-md">
+                <h3
+                  class="text-xl font-heading font-semibold text-primary mb-4"
+                >
+                  Contact Information
+                </h3>
+                <div class="space-y-4">
+                  <div class="flex items-center">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                      <i class="fas fa-envelope text-primary"></i>
+                    </div>
+                    <div>
+                      <p class="text-gray-600">Email</p>
+                      <p class="font-semibold">
+                        tanzaniaappssolutions@gmail.com
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                      <i class="fas fa-phone text-primary"></i>
+                    </div>
+                    <div>
+                      <p class="text-gray-600">Phone</p>
+                      <p class="font-semibold">+255 626 178 632</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                      <i class="fas fa-map-marker-alt text-primary"></i>
+                    </div>
+                    <div>
+                      <p class="text-gray-600">Location</p>
+                      <p class="font-semibold">Arusha, Tanzania</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6">
+                  <h4
+                    class="text-lg font-heading font-semibold text-primary mb-2"
+                  >
+                    Follow Us
+                  </h4>
+                  <div class="flex space-x-3">
+                    <a
+                      href="https://www.linkedin.com/in/ibrahim-shelukindo-a8a496225"
+                      target="_blank"
+                      class="bg-gray-100 p-2 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a
+                      href="mailto:tanzaniaappssolutions@gmail.com"
+                      class="bg-gray-100 p-2 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="fas fa-envelope"></i>
+                    </a>
+                    <a
+                      href="https://instagram.com/tanzania_apps_solution"
+                      target="_blank"
+                      class="bg-gray-100 p-2 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary text-white py-8">
       <div class="container mx-auto px-4">
         <div class="text-center">
-          <div class="flex justify-center space-x-6 mb-8">
+          <div class="flex justify-center space-x-6 mb-4">
             <a
-              href="www.linkedin.com/in/ibrahim-shelukindo-a8a496225"
+              href="https://www.linkedin.com/in/ibrahim-shelukindo-a8a496225"
               class="text-white hover:text-secondary transition-colors duration-300"
             >
               <i class="fab fa-linkedin-in text-xl"></i>
@@ -520,45 +599,89 @@
               <i class="fas fa-envelope text-xl"></i>
             </a>
             <a
-              href="#"
+              href="https://instagram.com/tanzania_apps_solution"
               class="text-white hover:text-secondary transition-colors duration-300"
             >
               <i class="fab fa-instagram text-xl"></i>
             </a>
           </div>
-          <p class="text-ivory opacity-80">
+          <p class="text-ivory opacity-90">
             © Tanzania Apps Solutions. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
-      // Smooth scrolling for navigation links
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById("mobileMenuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      function openMobileMenu() {
+        mobileMenu.classList.remove(
+          "-translate-y-2",
+          "scale-95",
+          "opacity-0",
+          "pointer-events-none"
+        );
+        mobileMenu.classList.add("translate-y-0", "scale-100", "opacity-100");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        mobileBtn.setAttribute("aria-expanded", "true");
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.add(
+          "-translate-y-2",
+          "scale-95",
+          "opacity-0",
+          "pointer-events-none"
+        );
+        mobileMenu.classList.remove(
+          "translate-y-0",
+          "scale-100",
+          "opacity-100"
+        );
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileBtn.setAttribute("aria-expanded", "false");
+      }
+
+      mobileBtn.addEventListener("click", () => {
+        const expanded = mobileBtn.getAttribute("aria-expanded") === "true";
+        if (expanded) closeMobileMenu();
+        else openMobileMenu();
+      });
+
+      // Close mobile menu when a link clicked
+      document.querySelectorAll("#mobileMenu a[data-close]").forEach((el) => {
+        el.addEventListener("click", () => closeMobileMenu());
+      });
+
+      // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
+          // if it's an in-page anchor
+          if (this.getAttribute("href").startsWith("#")) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
           }
         });
       });
 
-      // Navbar background change on scroll
+      // Navbar shadow on scroll
       window.addEventListener("scroll", () => {
         const navbar = document.getElementById("navbar");
         if (window.scrollY > 50) {
-          navbar.classList.add("shadow-lg");
+          navbar.classList.add("shadow-lg", "bg-white");
         } else {
           navbar.classList.remove("shadow-lg");
         }
       });
 
-      // Animation on scroll
+      // IntersectionObserver for animate-on-scroll
       const observerOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px",
@@ -572,12 +695,12 @@
         });
       }, observerOptions);
 
-      document.querySelectorAll(".animate-on-scroll").forEach((element) => {
-        observer.observe(element);
-      });
+      document
+        .querySelectorAll(".animate-on-scroll")
+        .forEach((el) => observer.observe(el));
 
-      // Form submission handling
-      const contactForm = document.querySelector("form");
+      // Contact form handling (demo)
+      const contactForm = document.getElementById("contactForm");
       if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
           e.preventDefault();
