@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <base target="_self" />
@@ -65,7 +65,9 @@
       .animate-on-scroll {
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
         will-change: transform, opacity;
       }
       .animate-on-scroll.visible {
@@ -587,7 +589,7 @@
         <div class="text-center">
           <div class="flex justify-center space-x-6 mb-4">
             <a
-              href="https://www.linkedin.com/in/ibrahim-shelukindo-a8a496225"
+              href="https://www.linkedin.com/in/tanzania-apps-solutions"
               class="text-white hover:text-secondary transition-colors duration-300"
             >
               <i class="fab fa-linkedin-in text-xl"></i>
@@ -623,7 +625,7 @@
           "-translate-y-2",
           "scale-95",
           "opacity-0",
-          "pointer-events-none"
+          "pointer-events-none",
         );
         mobileMenu.classList.add("translate-y-0", "scale-100", "opacity-100");
         mobileMenu.setAttribute("aria-hidden", "false");
@@ -635,12 +637,12 @@
           "-translate-y-2",
           "scale-95",
           "opacity-0",
-          "pointer-events-none"
+          "pointer-events-none",
         );
         mobileMenu.classList.remove(
           "translate-y-0",
           "scale-100",
-          "opacity-100"
+          "opacity-100",
         );
         mobileMenu.setAttribute("aria-hidden", "true");
         mobileBtn.setAttribute("aria-expanded", "false");
