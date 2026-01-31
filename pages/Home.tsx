@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SERVICES, PROJECTS } from "../constants";
 
+// Import images from src/assets
+import HeroImage from "../src/assets/openimage.jpg";
+import TeamImage from "../src/assets/arewe.jpg";
+
 const Home: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,7 +30,7 @@ const Home: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert(
-      "Asante! We have received your message. Our team will get back to you shortly.",
+      "Asante! We have received your message. Our team will get back to you shortly."
     );
     setFormData({ name: "", email: "", message: "" });
   };
@@ -63,7 +67,7 @@ const Home: React.FC = () => {
           <div className="hidden md:block">
             <div className="relative">
               <img
-                src="src/assets/openimage.jpg"
+                src={HeroImage}
                 alt="Digital Solutions"
                 className="rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
               />
@@ -119,7 +123,7 @@ const Home: React.FC = () => {
             </div>
             <div className="order-1 md:order-2">
               <img
-                src="src/assets/arewe.jpg"
+                src={TeamImage}
                 alt="Our Team"
                 className="rounded-3xl shadow-lg border-8 border-ivory"
               />
@@ -207,8 +211,8 @@ const Home: React.FC = () => {
                 Let's Talk!
               </h2>
               <p className="text-gray-600 mb-8">
-                Ready to start your digital transformation journey? Fill out the
-                form and our experts will contact you.
+                Ready to start your digital transformation journey? Fill out
+                the form and our experts will contact you.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">

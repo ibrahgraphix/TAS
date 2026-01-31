@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Logo from "../src/assets/Logo.png";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navbar: React.FC = () => {
           {/* Logo + Name */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="src/assets/logo.png" // 👈 Your logo here
+              src={Logo} // 👈 Your logo here
               alt="Tanzania Apps Solutions Logo"
               className="w-10 h-10 object-contain rounded-lg"
             />
