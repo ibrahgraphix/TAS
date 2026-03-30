@@ -23,6 +23,9 @@ import Gaza3 from "./src/assets/gaza3.png";
 import Uzunguni1 from "./src/assets/uzunguni1.png";
 import Uzunguni2 from "./src/assets/uzunguni2.png";
 import Uzunguni3 from "./src/assets/uzunguni3.png";
+import Jessi1 from "./src/assets/jessi1.png";
+import Jessi2 from "./src/assets/jessi2.png";
+
 
 export const SERVICES: Service[] = [
   {
@@ -52,6 +55,16 @@ export const SERVICES: Service[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: "9",
+    title: "Jessi Collections Store",
+    description:
+      "This is a full working Ecommerce website for Jessi Collections Store. Users can browse products, view details, and contact the seller so as to purchase products. The website is designed to be user-friendly and easy to navigate. It is also responsive and can be accessed from different devices.",
+    imageUrl: Jessi1,
+    category: "Ecommerce Website",
+    liveUrl: "https://jessi.co.tz",
+    screenshots: [Jessi1, Jessi2],
+  },
   {
     id: "1",
     title: "Tours Connect",
@@ -127,5 +140,4 @@ export const PROJECTS: Project[] = [
     category: "Enterprise Software",
     screenshots: [Cyber1, Cyber2, Cyber3],
   },
-  
 ];
